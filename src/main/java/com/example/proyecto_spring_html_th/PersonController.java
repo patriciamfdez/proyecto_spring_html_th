@@ -3,6 +3,7 @@ package com.example.proyecto_spring_html_th;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -76,10 +77,20 @@ public class PersonController {
         return "QuienesSomos";
     }
 
-    @GetMapping("Calendario")
-    String getCalendario(Model model) throws ParseException{
-        Calendario miCalendario = new Calendario("Primer paso de un calendario");
-        model.addAttribute("attr_calendario",miCalendario);
-        return "Calendario";
+    @GetMapping("/Calendar")
+    String getCalendar(Model model) throws ParseException{
+        EoiCalendar miCalendar = new EoiCalendar("Mi primer calendario");
+        model.addAttribute("attr_calendar", miCalendar);
+        return "Calendar";
+    }
+
+    @RequestMapping("/createCalendar")
+
+    public String createCalendar(EoiCalendar eoiCalendar){
+        // Servicio conectado a la BBDD donde puedo controlar la entrada de datos
+        // objetoDeLecturaServicio
+        // En este ejemplo mostramos por consola en url indicada
+        System.out.println("calendario = " + eoiCalendar.getActionText());
+        return "Calendar";
     }
 }
