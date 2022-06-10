@@ -75,4 +75,11 @@ public class PersonController {
         model.addAttribute("datoscontacto",miQuienesSomos);
         return "QuienesSomos";
     }
+
+    @GetMapping("Calendario")
+    String getCalendario(Model model) throws ParseException{
+        Calendario miCalendario = new Calendario("Primer paso de un calendario");
+        model.addAttribute("attr_calendario",miCalendario);
+        return "Calendario";
+    }
 }
